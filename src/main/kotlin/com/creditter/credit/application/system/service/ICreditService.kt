@@ -1,11 +1,11 @@
 package com.creditter.credit.application.system.service
 
-import com.creditter.credit.application.system.entities.Customer
+import com.creditter.credit.application.system.entities.Credit
+import java.util.UUID
 
 interface ICreditService {
 
-    fun save(customer: Customer): Customer
-    fun findById(id: Long): Customer
-    fun deleteById(id: Long): Customer
-    
+    fun save(credit: Credit): Credit
+    fun findAllByCostumer(customerId: Long): List<Credit>
+    fun findByCreditCode(creditCode: UUID): Credit
 }
