@@ -1,8 +1,8 @@
 package com.creditter.credit.application.system.controller
 
-import com.creditter.credit.application.system.dto.CustomerDTO
-import com.creditter.credit.application.system.dto.CustomerUpdateDto
-import com.creditter.credit.application.system.dto.CustomerView
+import com.creditter.credit.application.system.dto.request.CustomerDto
+import com.creditter.credit.application.system.dto.request.CustomerUpdateDto
+import com.creditter.credit.application.system.dto.response.CustomerView
 import com.creditter.credit.application.system.entities.Customer
 import com.creditter.credit.application.system.service.impl.CustomerService
 import org.springframework.web.bind.annotation.*
@@ -14,7 +14,7 @@ class CustomerController(
 ) {
 
     @PostMapping
-    fun saveCustomer(@RequestBody customerDTO: CustomerDTO): String {
+    fun saveCustomer(@RequestBody customerDTO: CustomerDto): String {
         val savedCustomer = this.customerService.save(customerDTO.toEntity())
         return "Customer ${savedCustomer.email} saved!"
     }

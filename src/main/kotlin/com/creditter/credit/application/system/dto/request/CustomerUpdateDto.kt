@@ -1,4 +1,4 @@
-package com.creditter.credit.application.system.dto
+package com.creditter.credit.application.system.dto.request
 
 import com.creditter.credit.application.system.entities.Customer
 import java.math.BigDecimal
