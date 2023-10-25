@@ -1,19 +1,17 @@
 package com.creditter.credit.application.system.controller
 
+import com.creditter.credit.application.system.dto.request.CreditDto
 import com.creditter.credit.application.system.dto.response.CreditView
 import com.creditter.credit.application.system.dto.response.CreditViewList
-import com.creditter.credit.application.system.dto.request.CreditDto
 import com.creditter.credit.application.system.entities.Credit
 import com.creditter.credit.application.system.service.impl.CreditService
 import org.springframework.http.HttpStatus
-import org.springframework.http.HttpStatusCode
 import org.springframework.http.ResponseEntity
-import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 import java.util.*
 import java.util.stream.Collectors
 
-@Controller
+@RestController
 @RequestMapping("/api/credits")
 class CreditController(
     private val creditService: CreditService
@@ -22,7 +20,7 @@ class CreditController(
     fun saveCredit(@RequestBody creditDto: CreditDto): ResponseEntity<String> {
         val credit: Credit = this.creditService.save(creditDto.toEntity())
         return ResponseEntity.status(HttpStatus.CREATED)
-            .body("Credit ${credit.creditCode} - Customer ${credit.customer?.firstName} saved")
+            .body("Added Credit (Code: ${credit.creditCode}) with value: ${credit.creditValue} to client (${credit.customer?.firstName})")
     }
 
     @GetMapping

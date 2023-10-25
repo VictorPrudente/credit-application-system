@@ -33,8 +33,10 @@ class CustomerController(
     }
 
     @PatchMapping("/{id}")
-    fun updateCustomerById(@PathVariable id: Long,
-                           @RequestBody customerUpdateDto: CustomerUpdateDto    ): ResponseEntity<CustomerView> {
+    fun updateCustomerById(
+        @PathVariable id: Long,
+        @RequestBody customerUpdateDto: CustomerUpdateDto
+    ): ResponseEntity<CustomerView> {
         val customer: Customer = this.customerService.findById(id)
         val customerToUpdate: Customer = customerUpdateDto.toEntity(customer)
         val customerUpdated: Customer = this.customerService.save(customerToUpdate)
