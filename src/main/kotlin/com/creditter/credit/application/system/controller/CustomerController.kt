@@ -5,6 +5,7 @@ import com.creditter.credit.application.system.dto.request.CustomerUpdateDto
 import com.creditter.credit.application.system.dto.response.CustomerView
 import com.creditter.credit.application.system.entities.Customer
 import com.creditter.credit.application.system.service.impl.CustomerService
+import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -16,7 +17,7 @@ class CustomerController(
 ) {
 
     @PostMapping
-    fun saveCustomer(@RequestBody customerDTO: CustomerDto): ResponseEntity<String> {
+    fun saveCustomer(@RequestBody @Valid customerDTO: CustomerDto): ResponseEntity<String> {
         val savedCustomer = this.customerService.save(customerDTO.toEntity())
         return ResponseEntity.status(HttpStatus.CREATED).body("Customer ${savedCustomer.email} saved!")
     }
@@ -35,7 +36,7 @@ class CustomerController(
     @PatchMapping("/{id}")
     fun updateCustomerById(
         @PathVariable id: Long,
-        @RequestBody customerUpdateDto: CustomerUpdateDto
+        @RequestBody @Valid customerUpdateDto: CustomerUpdateDto
     ): ResponseEntity<CustomerView> {
         val customer: Customer = this.customerService.findById(id)
         val customerToUpdate: Customer = customerUpdateDto.toEntity(customer)

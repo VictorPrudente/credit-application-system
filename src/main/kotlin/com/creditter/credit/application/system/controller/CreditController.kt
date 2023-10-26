@@ -5,6 +5,7 @@ import com.creditter.credit.application.system.dto.response.CreditView
 import com.creditter.credit.application.system.dto.response.CreditViewList
 import com.creditter.credit.application.system.entities.Credit
 import com.creditter.credit.application.system.service.impl.CreditService
+import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -17,10 +18,12 @@ class CreditController(
     private val creditService: CreditService
 ) {
     @PostMapping
-    fun saveCredit(@RequestBody creditDto: CreditDto): ResponseEntity<String> {
+    fun saveCredit(@RequestBody @Valid creditDto: CreditDto): ResponseEntity<String> {
         val credit: Credit = this.creditService.save(creditDto.toEntity())
         return ResponseEntity.status(HttpStatus.CREATED)
-            .body("Added Credit (Code: ${credit.creditCode}) with value: ${credit.creditValue} to client (${credit.customer?.firstName})")
+            .body("Added Credit (Code: ${credit.creditCode}) " +
+                    "with value: ${credit.creditValue} " +
+                    "to client (${credit.customer?.firstName})")
     }
 
     @GetMapping

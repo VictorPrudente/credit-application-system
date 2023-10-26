@@ -1,6 +1,7 @@
 package com.creditter.credit.application.system.service.impl
 
 import com.creditter.credit.application.system.entities.Credit
+import com.creditter.credit.application.system.exceptions.CustomException
 import com.creditter.credit.application.system.repository.CreditRepository
 import com.creditter.credit.application.system.service.ICreditService
 import org.springframework.stereotype.Service
@@ -25,11 +26,11 @@ class CreditService(
 
     override fun findByCreditCode(customerId: Long, creditCode: UUID): Credit {
         val credit: Credit = (this.creditRepository.findByCreditCode(creditCode)
-            ?: throw RuntimeException("Creditcode $creditCode not found."))
+            ?: throw CustomException("Creditcode $creditCode not found."))
         if(credit.customer?.id == customerId){
             return credit
         } else {
-            throw java.lang.RuntimeException("Contact admin")
+            throw CustomException("Contact admin")
         }
     }
 }
