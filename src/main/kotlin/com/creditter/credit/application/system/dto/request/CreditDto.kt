@@ -15,7 +15,7 @@ data class CreditDto(
     @field:Future
     val dayOfFirstInstallment: LocalDate,
     @field:Min(value = 1)
-    @field:Max(value = 60)
+    @field:Max(value = 48)
     val numberOfInstallments: Int,
     @field:NotNull(message = "Input Error. Customer Id cannot be empty.")
     val customerId: Long
