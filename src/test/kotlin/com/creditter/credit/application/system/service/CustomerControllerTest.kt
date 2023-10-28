@@ -77,10 +77,10 @@ class CustomerControllerTest {
         every { customerRepository.findById(fakeId) } returns Optional.of(fakeCustomer)
         every { customerRepository.delete(fakeCustomer) } just runs
         //when
-        customerService.deleteById(fakeId)
+        customerService.delete(fakeId)
         //then
         verify(exactly = 1) { customerRepository.findById(fakeId) }
-        verify(exactly = 1) { customerRepository.deleteById(fakeId) }
+        verify(exactly = 1) { customerRepository.delete(fakeCustomer) }
     }
 
     private fun buildCustomer(
@@ -99,7 +99,7 @@ class CustomerControllerTest {
         cpf = cpf,
         email = email,
         password = password,
-        adress = Address(
+        address = Address(
             zipCode = zipCode,
             street = street,
         ),

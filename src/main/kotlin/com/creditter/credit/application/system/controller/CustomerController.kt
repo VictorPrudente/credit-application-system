@@ -30,7 +30,7 @@ class CustomerController(
 
     @DeleteMapping("/{id}")
     fun deleteCustomerByID(@PathVariable id: Long) {
-        return this.customerService.deleteById(id)
+        return this.customerService.delete(id)
     }
 
     @PatchMapping("/{id}")
