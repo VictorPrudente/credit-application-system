@@ -24,7 +24,7 @@ data class CustomerDto(
     @field:NotEmpty(message = "Input Error. Password cannot be empty.")
     val password: String,
     @field:NotEmpty(message = "Input Error. Zip code cannot be empty.")
-    val zipcode: String,
+    val zipCode: String,
     @field:NotEmpty(message = "Input Error. Street cannot be empty.")
     val street: String
 ) {
@@ -36,7 +36,7 @@ data class CustomerDto(
         email = this.email,
         password = this.password,
         address = Address(
-            zipCode = this.zipcode,
+            zipCode = this.zipCode,
             street = this.street
         )
     )
